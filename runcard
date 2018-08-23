@@ -1,0 +1,31 @@
+#!/usr/bin/php
+<?php
+    /*for ($i = 0; $i <= $argc -1; ++$i) {
+        print "$i: $argv[$i]\n";
+    }*/
+
+    if (!isset($argv[1]))
+    {
+    	$argv[1] = '';
+    }
+
+	require_once('./Cards.php');
+
+	$card = new Cards();
+
+	switch ($argv[1]) {
+		case '--dealhand':
+			print implode(',', $card->generateHand()) . "\n";
+			break;
+		case '--verifyhand':
+			# code...
+			$cards=explode(',', $argv[2]);
+			var_dump($card->checkHandIfStraight($cards));
+			break;
+		default:
+    		print "Usage as below \n ./runcard --dealhand \n ./runcard --verifyhand ad,2d,3d,4d,5d\n";
+			break;
+	}
+
+
+?>
